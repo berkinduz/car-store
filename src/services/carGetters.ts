@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export const carGetters = () => {
-  const getCarBySorting = async (
+  const getCarsBySorting = async (
     sortBy: number = 0,
     priceDirection: number = 0,
     take: number = 10
@@ -15,5 +15,12 @@ export const carGetters = () => {
     return res
   }
 
-  return { getCarBySorting }
+  const getCarById = async (id: string) => {
+    const res = await axios
+      .get(`http://sandbox.arabamd.com/api/v1/detail?id=${id}`)
+      .then((res) => res.data)
+    return res
+  }
+
+  return { getCarsBySorting, getCarById }
 }

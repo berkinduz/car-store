@@ -13,9 +13,9 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from "vue"
 
-import Card from "./base/Card.vue"
-import Filtering from "./base/Filtering.vue"
-import Sorting from "./base/Sorting.vue"
+import Card from "../components/base/Card.vue"
+import Filtering from "../components/base/Filtering.vue"
+import Sorting from "../components/base/Sorting.vue"
 import { useFilters } from "../utils/useFilters"
 
 export default defineComponent({
