@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export const carGetters = () => {
-  const getCarByFilters = async (
+  const getCarBySorting = async (
     sortBy: number,
     priceDirection: number,
     take: number
@@ -14,4 +14,6 @@ export const carGetters = () => {
 
     return res
   }
+
+  return { getCarBySorting }
 }
