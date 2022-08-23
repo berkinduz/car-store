@@ -8,15 +8,15 @@
           :id="'carousel-1'"
           name="carousel"
           aria-hidden="true"
-          hidden=""
-          checked="checked"
+          hidden="true"
+          checked="true"
         />
         <div
           class="carousel-item absolute opacity-0 bg-cover h-[600px]"
           :key="photoIndex"
           :style="{
             backgroundImage:
-              'url(' + setImageResolution(photos[photoIndex]) + ')',
+              'url(' + setImageResolution(photos[photoIndex] || noImage) + ')',
           }"
         ></div>
         <button
@@ -36,19 +36,19 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, ref } from "vue"
 import { useImage } from "../../utils/useImage"
 export default defineComponent({
   props: {
-    photos: { type: Array },
+    photos: { type: Array, default: ["../assets/no_image.png"] },
   },
   setup(props) {
     const { setImageResolution } = useImage()
     const photoIndex = ref(0)
-    const photoCount = props.photos?.length
-
-    const changePhoto = (type) => {
+    const photoCount = props.photos?.length || 2
+    const noImage: string = "../assets/no_image.png"
+    const changePhoto = (type: string) => {
       if (type === "decrease") {
         if (photoIndex.value < photoCount - 1) {
           photoIndex.value++
@@ -60,7 +60,7 @@ export default defineComponent({
       }
     }
 
-    return { setImageResolution, photoIndex, changePhoto }
+    return { setImageResolution, photoIndex, changePhoto, noImage }
   },
 })
 </script>
