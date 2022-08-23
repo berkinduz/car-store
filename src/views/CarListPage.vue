@@ -30,20 +30,22 @@ export default defineComponent({
     const { getCars } = useFilters()
     const { getFilteredCars } = carGetters()
     const products = ref([])
+
     document.title = "Car Store"
     onMounted(async () => {
-      products.value = await getCars("date", "ascending", 10)
+      products.value = await getCars("date", "ascending", 20)
     })
 
     const updateList = async (sort: any) => {
       const sortType = sort.sortType
       const sortDirection = sort.sortDirection
       const numberOfItem = sort.numberOfItem
+
       products.value = await getCars(sortType, sortDirection, numberOfItem)
     }
 
     const filterList = async (filters: Filters) => {
-      products.value = await getFilteredCars(filters, 50)
+      products.value = await getFilteredCars(filters, "20")
     }
 
     return {

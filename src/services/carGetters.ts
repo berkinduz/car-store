@@ -23,7 +23,7 @@ export const carGetters = () => {
     return res
   }
 
-  const getFilteredCars = async (filters: Filters, take: number) => {
+  const getFilteredCars = async (filters: Filters, take: string) => {
     const res = await axios
       .get(
         `http://sandbox.arabamd.com/api/v1/listing?minYear=${filters.minYear}&maxYear=${filters.maxYear}&take=${take}`

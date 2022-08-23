@@ -38,9 +38,9 @@
           class="border-gray-100 rounded"
           v-model="sortings.numberOfItem"
         >
-          <option value="20">20</option>
-          <option value="50">50</option>
-          <option value="100">100</option>
+          <option :value="20">20</option>
+          <option :value="50">50</option>
+          <option :value="100">100</option>
         </select>
       </div>
     </div>
@@ -55,7 +55,7 @@ export default defineComponent({
     const sortings = ref<Sortings>({
       sortType: "date",
       sortDirection: "ascending",
-      numberOfItem: "20",
+      numberOfItem: 20,
     })
 
     watch(sortings.value, () => {
