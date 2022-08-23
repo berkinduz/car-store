@@ -30,17 +30,32 @@
           <option value="descending">Descending</option>
         </select>
       </div>
+      <div class="ml-4">
+        <label for="num_of_item" class="text-gray-400"> Items: </label>
+        <select
+          id="NumberOfItem"
+          name="num_of_item"
+          class="border-gray-100 rounded"
+          v-model="sortings.numberOfItem"
+        >
+          <option value="20">20</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+      </div>
     </div>
   </div>
 </template>
-<script>
-import { defineComponent, ref, watch, defineEmits } from "vue"
+<script lang="ts">
+import { defineComponent, ref, watch } from "vue"
+import { Sortings } from "../../types/sortings"
 
 export default defineComponent({
   setup(_, { emit }) {
-    const sortings = ref({
+    const sortings = ref<Sortings>({
       sortType: "date",
       sortDirection: "ascending",
+      numberOfItem: "20",
     })
 
     watch(sortings.value, () => {

@@ -38,8 +38,8 @@ export default defineComponent({
     const updateList = async (sort: any) => {
       const sortType = sort.sortType
       const sortDirection = sort.sortDirection
-
-      products.value = await getCars(sortType, sortDirection, 20)
+      const numberOfItem = sort.numberOfItem
+      products.value = await getCars(sortType, sortDirection, numberOfItem)
     }
 
     const filterList = async (filters: Filters) => {
