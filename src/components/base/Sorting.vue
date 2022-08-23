@@ -26,7 +26,6 @@
           class="border-gray-100 rounded"
           v-model="sortings.sortDirection"
         >
-          <option readonly>Direction</option>
           <option value="ascending">Ascending</option>
           <option value="descending">Descending</option>
         </select>
