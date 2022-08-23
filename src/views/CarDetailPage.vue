@@ -3,8 +3,8 @@
     class="md:flex items-start justify-center py-12 2xl:px-20 md:px-6 px-4"
     v-if="product"
   >
-    <div class="xl:w-2/6 lg:w-2/5 md:block" :key="photo">
-      <Carousel :photos="product.photos" :key="photo" />
+    <div class="xl:w-2/6 lg:w-2/5 md:block">
+      <Carousel :photos="product.photos" />
     </div>
 
     <div class="xl:w-2/5 md:w-1/2 lg:ml-8 md:ml-6 md:mt-0 mt-6">
@@ -90,7 +90,7 @@
     </div>
   </div>
 </template>
-<script>
+<script lang="ts">
 import { defineComponent, onMounted, ref } from "vue"
 import { useRouter } from "vue-router"
 import { carGetters } from "../services/carGetters"
@@ -109,7 +109,10 @@ export default defineComponent({
     const product = ref()
 
     onMounted(async () => {
-      product.value = await getCarById(router.currentRoute.value.params.id)
+      const currentRoute: string = router.currentRoute.value?.params
+        ?.id as string
+
+      product.value = await getCarById(currentRoute)
       document.title = product.value.title
     })
 

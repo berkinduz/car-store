@@ -1,4 +1,5 @@
 import axios from "axios"
+import { Filters } from "../types/filters"
 
 export const carGetters = () => {
   const getCarsBySorting = async (
@@ -22,8 +23,7 @@ export const carGetters = () => {
     return res
   }
 
-  const getFilteredCars = async (filters: object, take: number) => {
-    console.log(filters)
+  const getFilteredCars = async (filters: Filters, take: number) => {
     const res = await axios
       .get(
         `http://sandbox.arabamd.com/api/v1/listing?minYear=${filters.minYear}&maxYear=${filters.maxYear}&take=${take}`

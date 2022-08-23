@@ -81,10 +81,11 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref } from "vue"
+import { Filters } from "../../types/filters"
 
 export default defineComponent({
   setup(_, { emit }) {
-    const filters = ref({
+    const filters = ref<Filters>({
       minYear: 0,
       maxYear: 2022,
     })
