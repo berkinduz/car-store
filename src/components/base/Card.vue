@@ -84,7 +84,6 @@ export default defineComponent({
   setup() {
     const { setImageResolution } = useImage()
 
-    const toCarDetail = (id) => {}
     return { setImageResolution }
   },
 })

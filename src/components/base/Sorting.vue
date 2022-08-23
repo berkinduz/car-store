@@ -1,8 +1,7 @@
 <template>
   <div class="flex items-center justify-between mb-5">
     <p class="text-sm text-gray-500">
-      <span class="hidden sm:inline"> Showing </span>
-      6 of 24 Products
+      <span class="hidden sm:inline"> Cars For Sale </span>
     </p>
 
     <div class="ml-4 flex flex-row gap-4">
