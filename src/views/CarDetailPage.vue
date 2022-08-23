@@ -70,7 +70,12 @@
         class="focus:outline-none focus:ring-2 focus:ring-offset-2 bg-red-400 focus:ring-gray-800 text-base flex items-center justify-center leading-none text-white bg-gray-800 w-full py-4 hover:bg-red-600 focus:outline-none"
       >
         <i class="mr-2 fas fa-solid fa-money-bill"></i>
-        {{ product.price }} ₺
+        {{
+          product.price.toLocaleString("en-US", {
+            style: "currency",
+            currency: "TRY",
+          })
+        }}
       </button>
       <div>
         <p class="text-base leading-4 mt-7">
@@ -105,6 +110,7 @@ export default defineComponent({
 
     onMounted(async () => {
       product.value = await getCarById(router.currentRoute.value.params.id)
+      document.title = product.value.title
     })
 
     return {
