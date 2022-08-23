@@ -1,7 +1,7 @@
 import { carGetters } from "../services/carGetters"
 
 export const useFilters = () => {
-  const { getCarBySorting } = carGetters()
+  const { getCarsBySorting } = carGetters()
 
   const sortTypes = ["price", "date", "year"]
   const sortDirections = ["ascending", "descending"]
@@ -10,7 +10,7 @@ export const useFilters = () => {
     const indexOfSortTypes = sortTypes.indexOf(sortType)
     const indexOfSortDirection = sortDirections.indexOf(sortDirection)
 
-    return getCarBySorting(indexOfSortTypes, indexOfSortDirection, take)
+    return getCarsBySorting(indexOfSortTypes, indexOfSortDirection, take)
   }
 
   return { getCars }

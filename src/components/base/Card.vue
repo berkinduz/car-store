@@ -3,9 +3,9 @@
     <div
       class="grid grid-cols-1 gap-5 mt-4 sm:grid-cols-2 lg:grid-cols-3 lg:mt-0"
     >
-      <a
-        href="{{`http://sandbox.arabamd.com/api/v1/detail?id=${product.id}`}}"
+      <router-link
         class="relative block bg-white border"
+        :to="{ name: 'CarDetail', params: { id: product.id } }"
         v-for="product in products"
         :key="product.id"
       >
@@ -35,7 +35,6 @@
           class="object-contain w-full h-52 lg:h-72"
           :src="setImageResolution(product.photo)"
         />
-
         <div class="p-2">
           <span
             class="inline-block px-3 py-1 text-xs font-medium bg-yellow-400"
@@ -67,7 +66,7 @@
             </svg>
           </button>
         </div>
-      </a>
+      </router-link>
     </div>
   </section>
 </template>

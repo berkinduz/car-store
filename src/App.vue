@@ -1,7 +1,5 @@
 <template>
-  <CarListPage />
+  <router-view></router-view>
 </template>
-<script setup lang="ts">
-import CarListPage from "./components/CarListPage.vue"
-</script>
+<script setup lang="ts"></script>
 <style scoped></style>
