@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-screen-xl px-4 py-12 mx-auto sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:items-start">
-      <Filtering />
+      <Filtering @filterApplied="filterList" />
       <div class="lg:col-span-3">
         <Sorting @sort-changed="updateList" />
         <Card :products="products" />
@@ -17,6 +17,7 @@ import Card from "../components/base/Card.vue"
 import Filtering from "../components/base/Filtering.vue"
 import Sorting from "../components/base/Sorting.vue"
 import { useFilters } from "../utils/useFilters"
+import { carGetters } from "../services/carGetters"
 
 export default defineComponent({
   components: {
@@ -26,6 +27,7 @@ export default defineComponent({
   },
   setup() {
     const { getCars } = useFilters()
+    const { getFilteredCars } = carGetters()
     const products = ref({})
 
     onMounted(async () => {
@@ -39,9 +41,14 @@ export default defineComponent({
       products.value = await getCars(sortType, sortDirection, 20)
     }
 
+    const filterList = async (filters) => {
+      products.value = await getFilteredCars(filters, 50)
+    }
+
     return {
       products,
       updateList,
+      filterList,
     }
   },
 })

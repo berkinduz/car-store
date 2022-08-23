@@ -25,128 +25,52 @@
       <form action="" class="border-t border-gray-200 lg:border-t-0">
         <fieldset>
           <legend class="block w-full px-5 py-3 text-xs font-medium bg-gray-50">
-            Type
+            Model Year
           </legend>
 
           <div class="px-5 py-6 space-y-2">
             <div class="flex items-center">
-              <input
-                id="toy"
-                type="checkbox"
-                name="type[toy]"
-                class="w-5 h-5 border-gray-300 rounded"
-              />
-
-              <label for="toy" class="ml-3 text-sm font-medium"> Toy </label>
-            </div>
-
-            <div class="flex items-center">
-              <input
-                id="game"
-                type="checkbox"
-                name="type[game]"
-                class="w-5 h-5 border-gray-300 rounded"
-              />
-
-              <label for="game" class="ml-3 text-sm font-medium"> Game </label>
-            </div>
-
-            <div class="flex items-center">
-              <input
-                id="outdoor"
-                type="checkbox"
-                name="type[outdoor]"
-                class="w-5 h-5 border-gray-300 rounded"
-              />
-
-              <label for="outdoor" class="ml-3 text-sm font-medium">
-                Outdoor
+              <label for="minYear" class="mr-5 text-sm font-medium">
+                Min
               </label>
+              <input
+                id="minYear"
+                type="input"
+                class="border border-gray-500 rounded ml-auto p-1"
+                v-model="filters.minYear"
+              />
+            </div>
+
+            <div class="flex items-center">
+              <label for="minYear" class="mr-5 text-sm font-medium">
+                Max
+              </label>
+              <input
+                id="minYear"
+                type="input"
+                class="border border-gray-500 rounded ml-auto p-1"
+                v-model="filters.maxYear"
+              />
             </div>
 
             <div class="pt-2">
-              <button type="button" class="text-xs text-gray-500 underline">
+              <button
+                type="button"
+                class="text-xs text-gray-500 underline"
+                @click="resetFilters"
+              >
                 Reset Type
               </button>
             </div>
           </div>
         </fieldset>
 
-        <div>
-          <fieldset>
-            <legend
-              class="block w-full px-5 py-3 text-xs font-medium bg-gray-50"
-            >
-              Age
-            </legend>
-
-            <div class="px-5 py-6 space-y-2">
-              <div class="flex items-center">
-                <input
-                  id="3+"
-                  type="checkbox"
-                  name="age[3+]"
-                  class="w-5 h-5 border-gray-300 rounded"
-                />
-
-                <label for="3+" class="ml-3 text-sm font-medium"> 3+ </label>
-              </div>
-
-              <div class="flex items-center">
-                <input
-                  id="8+"
-                  type="checkbox"
-                  name="age[8+]"
-                  class="w-5 h-5 border-gray-300 rounded"
-                />
-
-                <label for="8+" class="ml-3 text-sm font-medium"> 8+ </label>
-              </div>
-
-              <div class="flex items-center">
-                <input
-                  id="12+"
-                  type="checkbox"
-                  name="age[12+]"
-                  class="w-5 h-5 border-gray-300 rounded"
-                />
-
-                <label for="12+" class="ml-3 text-sm font-medium"> 12+ </label>
-              </div>
-
-              <div class="flex items-center">
-                <input
-                  id="16+"
-                  type="checkbox"
-                  name="age[16+]"
-                  class="w-5 h-5 border-gray-300 rounded"
-                />
-
-                <label for="16+" class="ml-3 text-sm font-medium"> 16+ </label>
-              </div>
-
-              <div class="pt-2">
-                <button type="button" class="text-xs text-gray-500 underline">
-                  Reset Age
-                </button>
-              </div>
-            </div>
-          </fieldset>
-        </div>
-
         <div class="flex justify-between px-5 py-3 border-t border-gray-200">
-          <button
-            name="reset"
-            type="button"
-            class="text-xs font-medium text-gray-600 underline rounded"
-          >
-            Reset All
-          </button>
-
           <button
             name="commit"
             type="button"
             class="px-5 py-3 text-xs font-medium text-white bg-green-600 rounded"
+            @click="applyFilters"
           >
             Apply Filters
           </button>
@@ -155,3 +79,27 @@
     </details>
   </div>
 </template>
+<script lang="ts">
+import { defineComponent, ref } from "vue"
+
+export default defineComponent({
+  setup(_, { emit }) {
+    const filters = ref({
+      minYear: 0,
+      maxYear: 2022,
+    })
+
+    const applyFilters = () => {
+      emit("filterApplied", filters.value)
+    }
+
+    const resetFilters = () => {
+      filters.value.maxYear = 2022
+      filters.value.minYear = 0
+      emit("filterApplied", filters.value)
+    }
+
+    return { filters, applyFilters, resetFilters }
+  },
+})
+</script>
