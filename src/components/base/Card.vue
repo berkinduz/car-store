@@ -1,14 +1,13 @@
 <template>
-  <section>
+  <section
+    class="grid grid-cols-1 gap-5 mt-4 sm:grid-cols-2 lg:grid-cols-3 lg:mt-0 relative"
+  >
     <div
-      class="grid grid-cols-1 gap-5 mt-4 sm:grid-cols-2 lg:grid-cols-3 lg:mt-0"
+      v-for="product in products"
+      :key="product.id"
+      class="relative w-full h-full border shadow shadow-black-300"
     >
-      <router-link
-        class="relative block bg-white border"
-        :to="{ name: 'CarDetail', params: { id: product.id } }"
-        v-for="product in products"
-        :key="product.id"
-      >
+      <router-link :to="{ name: 'CarDetail', params: { id: product.id } }">
         <button
           type="button"
           name="wishlist"
@@ -37,20 +36,29 @@
         />
         <div class="p-2">
           <span
-            class="inline-block px-3 py-1 text-xs font-medium bg-yellow-400"
+            class="inline-block px-3 py-1 text-xs font-medium text-white bg-red-500"
           >
             {{ product.modelName }}
           </span>
-          <h5 class="mt-4 text-lg font-bold">{{ product.title }}</h5>
-          <p class="mt-2 text-sm font-medium text-gray-600">
-            {{ product.price }} ₺
+          <h5
+            class="mt-4 text-md max-h-14 font-medium text-gray-600 overflow-hidden"
+          >
+            {{ product.title }}
+          </h5>
+          <p class="mt-2 text-md font-bold">
+            {{
+              product.price.toLocaleString("en-US", {
+                style: "currency",
+                currency: "TRY",
+              })
+            }}
           </p>
           <button
             name="add"
             type="button"
             class="flex items-center justify-center w-full px-8 py-4 mt-4 bg-yellow-500 rounded-sm"
           >
-            <span class="text-sm font-medium"> Detaylı Bilgiler </span>
+            <span class="text-sm font-medium"> Details </span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"

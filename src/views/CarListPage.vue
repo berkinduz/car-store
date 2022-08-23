@@ -25,11 +25,11 @@ export default defineComponent({
     Filtering,
     Sorting,
   },
+
   setup() {
     const { getCars } = useFilters()
     const { getFilteredCars } = carGetters()
     const products = ref({})
-
     onMounted(async () => {
       products.value = await getCars("date", "ascending", 10)
     })
